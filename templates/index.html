@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        p {
+            margin-bottom: 30px;
+            color: #6c757d;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        button {
+            background: var(--primary-color);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result-container {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .result-text {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--success-color);
+            margin: 0;
+        }
+        .confidence-bar {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .confidence-level {
+            height: 20px;
+            background-color: var(--success-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💼 Salary Predictor</h1>
+        <p>Enter your profile details to predict your salary category.</p>
+
+        <form action="/" method="post">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" required min="18" max="90" value="30">
+                </div>
+                <div class="form-group">
+                    <label for="hours-per-week">Hours per Week</label>
+                    <input type="number" id="hours-per-week" name="hours-per-week" required min="1" max="99" value="40">
+                </div>
+                <div class="form-group full-width">
+                    <label for="education">🎓 Education Level</label>
+                    <select id="education" name="education" required>
+                        <option>Bachelors</option><option>Masters</option><option>Doctorate</option>
+                        <option>Some-college</option><option>HS-grad</option><option>Prof-school</option>
+                        <option>Assoc-acdm</option><option>Assoc-voc</option><option>11th</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label for="occupation">🧑‍💻 Occupation</label>
+                    <select id="occupation" name="occupation" required>
+                        <option>Prof-specialty</option><option>Exec-managerial</option><option>Sales</option>
+                        <option>Craft-repair</option><option>Adm-clerical</option><option>Tech-support</option>
+                        <option>Machine-op-inspct</option><option>Other-service</option><option>Transport-moving</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">🚀 Predict Salary</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result-container">
+                <p class="result-text">{{ prediction.result }}</p>
+                <div class="confidence-bar">
+                    <div class="confidence-level" style="width: {{ prediction.confidence }}%;">
+                        {{ prediction.confidence }}%
+                    </div>
+                </div>
+                <p style="margin-top:10px; margin-bottom:0; font-size:0.9em; color:#6c757d;">Confidence Score</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
