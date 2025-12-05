@@ -154,4 +154,4 @@ This project is created for educational and portfolio purposes.
 
 ---
 
-**Built with ❤️ using Streamlit & scikit-learn**
+**SalarySense · Built with ❤️ by Waleedul Haque · Powered by Streamlit & scikit-learn**
