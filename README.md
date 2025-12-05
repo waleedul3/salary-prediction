@@ -1,6 +1,18 @@
 # 💼 SalarySense - AI-Powered Salary Prediction Platform
 
 A modern SaaS-style web application for predicting employee salary bands using machine learning. Built with Streamlit and featuring a professional dark/light mode interface.
+<img width="1913" height="972" alt="image" src="https://github.com/user-attachments/assets/dd0ab0a6-465f-48a5-94f2-5062f8ebba4b" />
+<img width="1912" height="968" alt="image" src="https://github.com/user-attachments/assets/101dc3a5-e29f-44b6-bcca-21c2b7003426" />
+<img width="1910" height="978" alt="image" src="https://github.com/user-attachments/assets/1514042f-d139-47d6-8621-f527abc2aa2f" />
+<img width="1910" height="976" alt="image" src="https://github.com/user-attachments/assets/6bf09ede-ca1b-4e76-97aa-b02b3e325d4b" />
+<img width="1913" height="893" alt="image" src="https://github.com/user-attachments/assets/327b25f3-0575-4d2a-b237-c0fb36c98605" />
+<img width="1882" height="894" alt="image" src="https://github.com/user-attachments/assets/fa06a08f-ce84-4c11-91b1-712a691230d3" />
+
+
+
+
+
+
 
 ## ✨ Features
 
